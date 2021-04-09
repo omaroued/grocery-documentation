@@ -18,4 +18,6 @@ In the user app, we used Stripe to receive payment from costomers. To add paymen
 
 2. Add your business details to activate your account.
 
+![image alt text](/images/stripe.jpg)
+
 3. Get your `merchant ID` and go to `Developers → API` Keys and get your `publishable key` and your `secret key` and paste them in `project_configuration.dart` file.

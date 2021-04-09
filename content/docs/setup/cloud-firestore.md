@@ -16,6 +16,7 @@ Every database needs rules to give limited permissions to users and full
 control to the admin. So, we will add rules to Firestore.
 
 1. Go to Firebase → Cloud Firestore → Rules and paste these rules:
+
 **Important**: Replace ADMIN_UID with your admin UID.
 
 ```
@@ -52,4 +53,8 @@ request.auth.uid== adminUid());}
 
 2. Go to Data and create a new collection named permission_check and put inside it any document name: This collection verifies if the user is the admin if he can read it.
 
+![image alt text](/images/permission-check.jpg)
+
 3. Add orders indexes: Go to indexes → Add index.
+
+![image alt text](/images/firestore-rules.jpg)

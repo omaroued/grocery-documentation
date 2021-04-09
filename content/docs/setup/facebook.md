@@ -43,3 +43,5 @@ and replace C:\OpenSSL with your OpenSSL path.
 2. Add your bundle Identifier.
 
 3. Go to Info.plist replace old Facebook values with yours.
+
+![image alt text](/images/fb.jpg)
