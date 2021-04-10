@@ -2,7 +2,7 @@
 
 [[main]]
   name = "Docs"
-  url = "/docs/setup/package-name-and-bundle-identifier/"
+  url = "/docs/overview/introduction/"
   weight = 10
 
 [[main]]
