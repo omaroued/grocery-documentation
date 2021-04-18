@@ -17,16 +17,19 @@ toc: true
 ```
 name: grocery
 description: A new Flutter project.
-publish_to: 'none'
-version: 1.0.2
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.3
+
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
   # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   #Splash Screen
   flutter_native_splash: ^0.2.7
@@ -64,6 +67,8 @@ dependencies:
   http: ^0.13.1
   #Stripe for credit card payment
   stripe_payment: ^1.0.11
+  #Image resizer to reduce upload size
+  flutter_native_image: ^0.0.6
 
 dev_dependencies:
   flutter_test:
@@ -105,8 +110,11 @@ flutter:
 ```
 name: grocery_admin
 description: A new Flutter project.
-publish_to: 'none'
-version: 1.0.2
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.3
+
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
@@ -115,9 +123,12 @@ dependencies:
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  #Font awesome icons
+  font_awesome_flutter: ^9.0.0
   #Splash Screen
-  flutter_native_splash: ^0.2.7
+  flutter_native_splash: ^1.1.7+1
   #Firebase
   firebase_core: ^1.0.3
   #Firebase login
@@ -136,7 +147,7 @@ dependencies:
   # Local Storage: For dark mode
   shared_preferences: ^2.0.5
   #Show svg images
-  flutter_svg: ^0.19.3
+  flutter_svg: ^0.21.0+1
   #Notification
   flutter_local_notifications: ^5.0.0+1
   url_launcher: ^6.0.3
@@ -144,13 +155,15 @@ dependencies:
   fluttertoast: ^8.0.3
   #Http plugin for notifications and payment
   http: ^0.13.1
+  #UIs
+  numberpicker: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
-  uses-material-design: true
+
   assets:
     - images/empty_cart.svg
     - images/error.svg
