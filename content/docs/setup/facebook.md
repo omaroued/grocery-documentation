@@ -36,6 +36,7 @@ and replace C:\OpenSSL with your OpenSSL path.
 
 6. Go to Facebook Login → Settings and paste the OAuth redirect URI in Client OAuth Settings and save changes.
 
+7. Go to `android/app/src/main/res/values/strings.xml` and replace old Facebook values with yours.
 ## IOS
 
 1. Go to Facebook login → QuickStart and choose iOS.
