@@ -30,8 +30,8 @@ Application.kt)` (2 files) and search for `package` keyword and replace
 the old package with your package.
 
 4. Change the directory name from:
-`android\app\src\main\java\com\example\grocery`
-to: `android\app\src\main\java\your\package\name`
+`android\app\src\main\kotlin\com\example\grocery`
+to: `android\app\src\main\kotlin\your\package\name`
 `(your.package.name)`
 
 ## iOS
