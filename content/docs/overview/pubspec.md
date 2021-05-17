@@ -17,10 +17,8 @@ toc: true
 ```
 name: grocery
 description: A new Flutter project.
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 1.0.3
+publish_to: 'none'
+version: 1.4.0
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -28,6 +26,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -75,6 +74,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+
   fonts:
     - family: Roboto
       fonts:
@@ -110,14 +110,11 @@ flutter:
 ```
 name: grocery_admin
 description: A new Flutter project.
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 1.0.3
+publish_to: 'none'
+version: 1.4.0
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
@@ -129,6 +126,8 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   #Splash Screen
   flutter_native_splash: ^1.1.7+1
+  #Flutter Slidable widget
+  flutter_slidable: ^0.6.0
   #Firebase
   firebase_core: ^1.0.3
   #Firebase login
@@ -138,7 +137,7 @@ dependencies:
   #Firebase storage
   firebase_storage: ^8.0.2
   #Firebase messaging:  for notifications
-  firebase_messaging: ^9.1.1
+  firebase_messaging: ^9.1.4
   #image picker
   file_picker: ^3.0.1
   # State Management and Streams manipulations
@@ -157,21 +156,103 @@ dependencies:
   http: ^0.13.1
   #UIs
   numberpicker: ^2.1.1
+  #Image resizer to reduce upload size
+  flutter_native_image: ^0.0.6
+  #Geocoding plugin to get location from address
+  geocoding: ^2.0.0
+  #Map launcher plugin to show address in map
+  map_launcher: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
-
+  uses-material-design: true
   assets:
     - images/empty_cart.svg
     - images/error.svg
     - images/nothing_found.svg
     - images/reminder.svg
     - images/success.svg
+    - images/category.svg
+    - images/delivery_boy.svg
+    - images/no_delivery_found.svg
+    - images/map.svg
     - images/logo.png
     - images/logo_splash.png
     - images/upload_image.png
     - images/stripe.png
+    - images/profile.png
+```
+
+## Delivery Boy App
+
+```
+name: delivery
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.4.0
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  #Splash Screen
+  flutter_native_splash: ^1.1.8+4
+  #Firebase
+  firebase_core: ^1.0.3
+  #Firebase login
+  firebase_auth: ^1.0.2
+  #Firebase Database
+  cloud_firestore: ^1.0.4
+  #Firebase storage
+  firebase_storage: ^8.0.2
+  #Firebase messaging:  for notifications
+  firebase_messaging: ^9.1.1
+  # State Management and Streams manipulations
+  provider: ^5.0.0
+  rxdart: ^0.26.0
+  # Local Storage: For dark mode
+  shared_preferences: ^2.0.5
+  #Show svg images
+  flutter_svg: ^0.21.0+1
+  #Notification
+  flutter_local_notifications: ^5.0.0+1
+  url_launcher: ^6.0.3
+  #Flutter toast
+  fluttertoast: ^8.0.3
+  #image picker
+  file_picker: ^3.0.1
+  #Http plugin for notifications
+  http: ^0.13.1
+  #Image resizer to reduce upload size
+  flutter_native_image: ^0.0.6
+  #Geocoding plugin to get location from address
+  geocoding: ^2.0.0
+  #Map launcher plugin to show address in map
+  map_launcher: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/empty_cart.svg
+    - images/error.svg
+    - images/nothing_found.svg
+    - images/reminder.svg
+    - images/success.svg
+    - images/map.svg
+    - images/logo.png
+    - images/logo_splash.png
+    - images/upload_image.png
+    - images/profile.png
 ```

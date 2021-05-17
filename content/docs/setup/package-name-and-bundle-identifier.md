@@ -34,6 +34,10 @@ the old package with your package.
 to: `android\app\src\main\kotlin\your\package\name`
 `(your.package.name)`
 
+#### Video:
+{{< youtube Wf6Kc4RYR_s >}}
+
+
 ## iOS
 Go to `ios/Runner.xcodeproj/project.pbxproj` and search for:
 `PRODUCT_BUNDLE_IDENTIFIER`

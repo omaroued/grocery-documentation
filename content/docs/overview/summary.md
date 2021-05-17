@@ -12,7 +12,7 @@ menu:
 weight: 102
 toc: true
 ---
-In these two apps, we used multiple techniques to make them work smoother and to prevent unknown errors.
+In these three apps, we used multiple techniques to make them work smoother and to prevent unknown errors.
 
 If you still have questions or want more information, you can email us or join our discord server and we can schedule a meeting.
 
