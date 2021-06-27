@@ -109,6 +109,7 @@ service cloud.firestore {
 ![image alt text](/images/firestore-rules.jpg)
 
 
+**Note:** in the video we made only 3 Firestore indexes. You have to add the fourth index (products) as you see in the picture.
 #### Video:
 
 {{< youtube 8CxLF1-g2tA >}}
