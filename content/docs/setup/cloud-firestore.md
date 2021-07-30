@@ -58,7 +58,8 @@ service cloud.firestore {
     // Coupons collection
     // Allow read only to normal users, read and write to admin
     match /coupons/{coupon}/{collection=**}{
-    allow read: if request.auth != null;
+    allow get: if request.auth != null;
+    allow list: if request.auth != null && request.auth.uid== adminUid() ;
     allow write: if request.auth != null && request.auth.uid== adminUid() ;
     }
 
@@ -68,6 +69,7 @@ service cloud.firestore {
     allow read: if request.auth != null;
     allow write: if request.auth != null && request.auth.uid== adminUid() ;
     }
+
 
     // Users collection (with nested cllections)
     // Allow read and write to normal users in his document, read and write to admin in all documents
@@ -84,12 +86,27 @@ service cloud.firestore {
     exists(/databases/$(database)/documents/delivery_boys/$(request.auth.token.email));
     }
 
+
     // Delivery boys collection
     // Allow read and write to delivery boys in his document, read and write to admin in all documents
-    match /delivery_boys/{email}/{collection=**}{
+    match /delivery_boys/{email}{
     allow read,write: if request.auth.uid== adminUid();
-    allow read,write: if request.auth != null && (request.auth.token.email == email);
+    allow read: if request.auth != null &&
+    (request.auth.token.email == email)
+    && exists(/databases/$(database)/documents/delivery_boys/$(email));
     }
+
+
+    // Delivery boys history collection
+    // Allow read and write to delivery boys in his document, read and write to admin in all documents
+    match /delivery_boys/{email}/history/{collection=**}{
+    allow read,write: if request.auth.uid== adminUid();
+    allow read,write: if
+         request.auth != null &&
+         (request.auth.token.email == email) &&
+         exists(/databases/$(database)/documents/delivery_boys/$(email));
+    }
+
 
     // Orders collection group
     // Allow read and update to delivery boys, read and write to admin
@@ -99,6 +116,7 @@ service cloud.firestore {
            && resource.data.status== "Processing"
            && resource.data.delivery_boy.email== request.auth.token.email;
     }
+
   }
 }
 ```
