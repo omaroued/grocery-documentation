@@ -87,14 +87,15 @@ service cloud.firestore {
     }
 
 
-    // Delivery boys collection
+    // Delivery boys collection 
     // Allow read and write to delivery boys in his document, read and write to admin in all documents
     match /delivery_boys/{email}{
     allow read,write: if request.auth.uid== adminUid();
-    allow read: if request.auth != null &&
+    allow read,update: if request.auth != null &&
     (request.auth.token.email == email)
     && exists(/databases/$(database)/documents/delivery_boys/$(email));
     }
+    
 
 
     // Delivery boys history collection
