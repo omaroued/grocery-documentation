@@ -16,14 +16,9 @@ toc: true
 
 Go to images folder and replace `logo.png` with your logo (keep the same
 name).
-### Android
-Go to `android/app/src/main/minmap` and replace
-`ic_launcher.png` with your logo (keep same image name)
-### iOS
-Go to `ios/Runner/Assets.xcassets/AppIcon.appiconset`
-and replace the images with yours.
-Important: Don’t forget to run flutter clean after these steps.
-
+### App launcher icon
+1. After changing the app logo, run the following command:
+ `flutter pub run flutter_launcher_icons:main`
 
 ### Splash Screen
 1. Go to images folder and replace `logo_splash.png` with your logo (keep the same
