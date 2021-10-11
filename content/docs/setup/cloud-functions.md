@@ -12,22 +12,48 @@ menu:
 weight: 105
 toc: true
 ---
+**Note:** Do these steps if you want to activate billing and work with cloud functions.
 
 
-- In the downloaded file, you will find a folder named functions. Open index.js and you will find 4 functions:
+## Setup
 
-1- sendNotificationFromAdmin
+In the downloaded file, you will find a folder named functions. Open index.js and you will find 4 functions:
 
-2- sendNotificationFromDeliveryBoy
+1. sendNotificationFromAdmin
 
-3- createPayment
+2. sendNotificationFromDeliveryBoy
 
-4- addOrder
+3. createPayment
+
+4. addOrder
 
 - In `addOrder` and `createPayment` functions, you will find a variable named `stripeSecretKey`, assign your stripe secret key with it.
 
-- After settings your variables, upload the functions to firebase.
-- These videos show how to upload your functions to firebase:
+- In `sendNotificationFromAdmin` function, you will find a variable named `adminUid`, assign youradmin UID with it.
+
+
+## Working with Firebase emulators
+You still can work with cloud functions without activate billing with fFirebase emulators (Only to check if your functions are working). You have to follow these steps:
+
+1. Install [Firebase CLI](https://firebase.google.com/docs/cli).
+2. Run CMD and to `firebase` folder and type:
+```
+firebase init
+```
+
+3. Run this command:
+```
+firebase emulators:start
+```
+
+4. Go to `lib/services/cloud_functions` and uncomment this line:
+```
+_functions.useFunctionsEmulator('localhost', 5001);
+```
+
+## Upload your functions to Firebase
+
+These videos show how to upload your functions to firebase:
 
 {{< youtube 29BNaJiqWB4 >}}
 

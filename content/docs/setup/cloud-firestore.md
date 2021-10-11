@@ -21,6 +21,118 @@ control to the admin. So, we will add rules to Firestore.
 
 **Important**: Replace ADMIN_UID with your admin UID.
 
+- With **Cloud Functions**:
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    //TODO: Put your admin UID
+    function adminUid(){ return "ADMIN_UID"}
+
+    // Collection to check if the user is the admin or not (Admin app login verification)
+    match /permission_check/{check}{
+    allow read : if  request.auth.uid== adminUid();
+    }
+
+    // Products collection
+    // Allow read only to normal users, read and write to admin
+    match /products/{product}/{collection=**}{
+    allow read: if request.auth != null;
+    allow write: if request.auth != null && request.auth.uid== adminUid() ;
+    }
+
+    // Admin collection
+    // Allow read only to normal users (to get notifications token), read and write to admin
+    match /admin/{document}/{collection=**}{
+    allow read,write: if request.auth != null && request.auth.uid== adminUid();
+    }
+
+    // Categories collection
+    // Allow read only to normal users, read and write to admin
+    match /categories/{category}/{collection=**}{
+    allow read: if request.auth != null;
+    allow write: if request.auth != null && request.auth.uid== adminUid() ;
+    }
+
+    // Coupons collection
+    // Allow read only to normal users, read and write to admin
+    match /coupons/{coupon}/{collection=**}{
+    allow get: if request.auth != null;
+    //Disallow collection query
+    allow list: if request.auth != null && request.auth.uid== adminUid() ;
+    allow write: if request.auth != null && request.auth.uid== adminUid() ;
+    }
+
+    // Shipping methods collection
+    // Allow read only to normal users, read and write to admin
+    match /shipping/{ship}/{collection=**}{
+    allow read: if request.auth != null;
+    allow write: if request.auth != null && request.auth.uid== adminUid() ;
+    }
+
+
+
+    // Users document
+    match /users/{userId}{
+    allow read,write: if request.auth.uid== adminUid();
+    allow read,write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // User cart
+    match /users/{userId}/cart/{item}{
+    allow read,write: if request.auth.uid== adminUid();
+    allow read,write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // User addresses
+    match /users/{userId}/addresses/{address}{
+    allow read,write: if request.auth.uid== adminUid();
+    allow read,write: if request.auth != null && request.auth.uid == userId;
+    }
+
+
+    // User orders
+    match /users/{userId}/orders/{order}{
+    allow read,write: if request.auth.uid== adminUid();
+    allow read: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Delivery boys collection
+    // Allow read and write to delivery boys in his document, read and write to admin in all documents
+    match /delivery_boys/{email}{
+    allow read,write: if request.auth.uid== adminUid();
+
+    allow read,update: if request.auth != null &&
+    (request.auth.token.email == email)
+    && exists(/databases/$(database)/documents/delivery_boys/$(email));
+    }
+
+
+    // Delivery boys history collection
+    // Allow read and write to delivery boys in his document, read and write to admin in all documents
+    match /delivery_boys/{email}/history/{item}{
+    allow read,write: if request.auth.uid== adminUid();
+    allow read,write: if
+         request.auth != null &&
+         (request.auth.token.email == email) &&
+         exists(/databases/$(database)/documents/delivery_boys/$(email));
+    }
+
+
+    // Orders collection group
+    // Allow read and update to delivery boys, read and write to admin
+    match /{path=**}/orders/{order} {
+    allow read,write: if request.auth != null && request.auth.uid== adminUid();
+    allow read,update: if request.auth != null
+           && resource.data.status== "Processing"
+           && resource.data.delivery_boy.email== request.auth.token.email;
+    }
+
+  }
+}
+```
+- Without **Cloud Functions**:
 ```
 rules_version = '2';
 service cloud.firestore {
@@ -87,15 +199,15 @@ service cloud.firestore {
     }
 
 
-    // Delivery boys collection 
+    // Delivery boys collection
     // Allow read and write to delivery boys in his document, read and write to admin in all documents
     match /delivery_boys/{email}{
     allow read,write: if request.auth.uid== adminUid();
+
     allow read,update: if request.auth != null &&
     (request.auth.token.email == email)
     && exists(/databases/$(database)/documents/delivery_boys/$(email));
     }
-    
 
 
     // Delivery boys history collection

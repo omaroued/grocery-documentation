@@ -18,4 +18,4 @@ If you still have questions or want more information, you can email us or join o
 
 Email: [omar@slownett.com](mailto:omar@slownett.com)
 
-Discord server: [Click Here](https://bit.ly/3daPqU0)
+Discord server: [Click Here](https://bit.ly/3mWDASA)

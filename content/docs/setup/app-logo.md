@@ -17,8 +17,10 @@ toc: true
 Go to images folder and replace `logo.png` with your logo (keep the same
 name).
 ### App launcher icon
-1. After changing the app logo, run the following command:
- `flutter pub run flutter_launcher_icons:main`
+- After changing the app logo, run the following command:
+ ```
+ flutter pub run flutter_launcher_icons:main
+ ```
 
 ### Splash Screen
 1. Go to images folder and replace `logo_splash.png` with your logo (keep the same

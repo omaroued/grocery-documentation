@@ -13,69 +13,20 @@ weight: 106
 toc: true
 ---
 
+
+
+## Setup
+- **Note:** add this part if you want to work in the free plan (Without cloud functions).
+
+
+
 1. For notifications between users, admin and delivery boys, we will use firebase messaging. So, we need the server key. To get it, you have to go to Project settings → Cloud messaging and copy the server key.
 
+2. Open `Without cloud functions/send-notification.js` and search for variable named `firebaseSecretKey` and put your secret key.
 
-2. Go [Cloudflare workers](https://workers.cloudflare.com/) and add this script and replace `YOUR_MESSAGING_KEY` with your Stripe secret key:
-```
-addEventListener('fetch', function(event) {
-  const { request } = event
-  const response = handleRequest(request).catch(handleError)
-  event.respondWith(response)
-})
+3. Go [Cloudflare workers](https://workers.cloudflare.com/) and add the script.
 
-async function handleRequest(request) {
-  const { method, url } = request
-  const { host, pathname } = new URL(url)
-
-  const firebaseSecretKey='YOUR_MESSAGING_KEY';
-  if(request.body!=null){
-
-    const firebaseRequest=await fetch('https://fcm.googleapis.com/fcm/send',
-      {method : "POST",
-      body:request.body,
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': 'key='+ firebaseSecretKey,
-      },  
-      }
-    );
-   return firebaseRequest;
-
-  }else{
-    new Response('Bad Request', { status: 400 })
-  }
-
-  // Workers on these hostnames have no origin server,
-  // therefore there is nothing else to be found
-  if (host.endsWith('.workers.dev')
-      || host.endsWith('.cloudflareworkers.com')) {
-    return new Response('Not Found', { status: 404 })
-  }
-
-  // Makes a fetch request to the origin server
-  return fetch(request)
-}
-
-/**
- * Responds with an uncaught error.
- * @param {Error} error
- * @returns {Response}
- */
-function handleError(error) {
-  console.error('Uncaught error:', error)
-
-  const { stack } = error
-  return new Response(stack || error, {
-    status: 500,
-    headers: {
-      'Content-Type': 'text/plain;charset=UTF-8'
-    }
-  })
-}
-```
-
-3. Copy the link and paste it helpers/project_configuration.dart (variable name: notificationsApi).
+4. Copy the link and paste it helpers/project_configuration.dart (variable name: notificationsApi).
 
 #### Video:
 

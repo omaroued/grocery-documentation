@@ -13,4 +13,4 @@ weight: 101
 toc: true
 ---
 
-In these apps, we used Shared Preferences to save the theme state (Dark/Light mode) and checking the first launch for the user app to showthe onboarding screen.
+In these apps, we used Get storage to save the theme state (Dark/Light mode), check the first launch for the user app to showthe onboarding screen...
